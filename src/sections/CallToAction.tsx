@@ -6,7 +6,7 @@ import { motion, useMotionTemplate, useMotionValue, useScroll, useTransform} fro
 import { RefObject, useEffect, useRef } from "react";
 
 // Function to track relative mouse position within an element
-const relativeMousePosition = (to: RefObject<HTMLElement>) => {
+const useRelativeMousePosition = (to: RefObject<HTMLElement>) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -40,7 +40,7 @@ export const CallToAction = () => {
   const backgroundPositionY = useTransform(scrollYProgress, [0, 1], [-300, 300]);
 
   // Track the mouse position relative to borderedDivRef
-  const [mouseX, mouseY] = relativeMousePosition(borderedDivRef);
+  const [mouseX, mouseY] = useRelativeMousePosition(borderedDivRef);
 
   // Use useMotionTemplate to dynamically update mask-image with mouseX and mouseY
   const maskImage = useMotionTemplate`radial-gradient(circle at ${mouseX}px ${mouseY}px, rgba(0, 0, 0, 1), transparent)`;
